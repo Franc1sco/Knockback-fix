@@ -3,7 +3,7 @@
 #include <dhooks>
 #include <sdktools>
 
-#define PLUGIN_VERSION "1.3.2"
+#define PLUGIN_VERSION "1.3.3"
 #define CS_PLAYER_SPEED_RUN 260.0
 #define MAX_SPEED 4096.0
 
@@ -42,6 +42,7 @@ public OnPluginStart()
 		SetFailState("Gamedata file knockbackfix.games.txt is missing.");
 	
 	new iOffset = GameConfGetOffset(hGameConf, "GetPlayerMaxSpeed");
+	//iOffset = 493;
 	CloseHandle(hGameConf);
 	
 	if(iOffset == -1)
@@ -90,8 +91,19 @@ public OnClientDisconnect(client)
 
 public MRESReturn:Hook_GetPlayerMaxSpeedPost(client, Handle:hReturn)
 {
+	//PrintToChat(client, "conseguido");
 	if(g_fHighSpeed[client] <= 0.0)
+	{
+	
+		if(!(GetEntityFlags(client) & FL_ONGROUND) && GetEntPropEnt(client, Prop_Send, "m_hGroundEntity") != -1)
+		{
+			new flags = GetEntityFlags(client);
+			SetEntityFlags(client, flags | FL_ONGROUND);
+			//PrintToChat(client, "conseguido");
+		}
 		return MRES_Ignored;
+		
+	}
 	
 	if(!IsPlayerAlive(client))
 	{
@@ -106,6 +118,7 @@ public MRESReturn:Hook_GetPlayerMaxSpeedPost(client, Handle:hReturn)
 		{
 			new flags = GetEntityFlags(client);
 			SetEntityFlags(client, flags | FL_ONGROUND);
+			//PrintToChat(client, "conseguido");
 		}
 		return MRES_Ignored;
 	}
@@ -119,6 +132,7 @@ public MRESReturn:Hook_GetPlayerMaxSpeedPost(client, Handle:hReturn)
 
 public MRESReturn:Hook_OnTeleport(client, Handle:hParams)
 {
+	//PrintToChat(client, "conseguido22");
 	if(DHookIsNullParam(hParams, 3))
 	{
 		return MRES_Ignored;
