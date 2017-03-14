@@ -1,3 +1,20 @@
+/*  CS:GO Knockback Fix
+ *
+ *  Copyright (C) 2017 Francisco 'Franc1sco' García
+ * 
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option) 
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with 
+ * this program. If not, see http://www.gnu.org/licenses/.
+ */
+
 #pragma semicolon 1
 #include <sourcemod>
 #include <dhooks>
@@ -19,7 +36,7 @@ public Plugin:myinfo =
 	author = "Jannik \"Peace-Maker\" Hartung, Franc1sco franug, Mapeadores",
 	description = "Enables knockback in CS:GO by allowing higher walking speeds when necassary",
 	version = PLUGIN_VERSION,
-	url = "https://forums.alliedmods.net/showthread.php?t=196307"
+	url = "http://steamcommunity.com/id/franug"
 }
 
 public APLRes:AskPluginLoad2(Handle:myself, bool:late, String:error[], err_max)
